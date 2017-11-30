@@ -11,23 +11,18 @@ app.get('/',function(req,res){
     res.send("Hi there, welcome to my assignment");
 });
 
-app.get('/speak/:pagenames',function(req,res){
-    var pagename = req.params.pagenames;
-    if(pagename==='pig'){
-        res.send("the pig goes oink");
-    }else if(pagename ==='cow'){
-        res.send("the cow goes moo");
-    }else if(pagename ==='dog'){
-        res.send("dog goes woof woof!");
-    }else if(pagename==='cat'){
-        res.send("the cat goes meow");
-    }else if(pagename==='horse'){
-        res.send("the horse goes bojack");
+app.get('/speak/:animal', function (req, res) {
+    var animal = req.params.animal.toLowerCase();
+    var sounds = {
+        pig: 'oink',
+        dog: 'woof woof',
+        cat: 'meow',
+        cow: 'moo',
+        goldfish: 'i hate Stan Smith'
     }
-    else{
-        res.send("Sorry, page not found..what are you doing with your life?");
-    }
-   });
+    var sound = sounds[animal];
+    res.send("The " + animal + " says '" + sound + "'");
+});
    
 app.get('/repeat/:words/:nums',function(req,res){
     var word = req.params.words;
